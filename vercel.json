@@ -8,6 +8,7 @@
       },
       {
         "src": "build.sh",
+        "headers": { "cache-control": "s-maxage=31536000, immutable" },
         "use": "@vercel/static-build",
         "config": {
           "distDir": "staticfiles_build"
