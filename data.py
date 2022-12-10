@@ -18,7 +18,7 @@ def create_subjects():
     models = [Content, Category, SubjectList]
     for m in models:
         m.objects.all().delete()
-    for k in range(1000):
+    for k in range(100):
         content = Content.objects.create(
             title=fake.name(),
             content=fake.text(),
