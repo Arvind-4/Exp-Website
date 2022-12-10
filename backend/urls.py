@@ -19,11 +19,7 @@ from django.urls import (
     include,
 )
 
-from content.views import (
-    index,
-    detail,
-    content_likes
-)
+from content.views import index, detail, content_likes
 
 from accounts.views import (
     signin_view,
@@ -34,17 +30,12 @@ from accounts.views import (
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='index.html')),
-
-    path('sign-in/', signin_view, name='sign-in'),
-    path('sign-up/', signup_view, name='sign-up'),
-    path('sign-out/', signout_view, name='sign-out'),
-
-
-    path('about/', TemplateView.as_view(template_name='about.html')),
-
-    path('home/', index,name='content-home'),
-    path('detail/<str:slug>/', detail,name='content-detail'),
-    path('content/likes/<str:slug>/', content_likes, name='content-like'),
+    path("admin/", admin.site.urls),
+    path("sign-in/", signin_view, name="sign-in"),
+    path("sign-up/", signup_view, name="sign-up"),
+    path("sign-out/", signout_view, name="sign-out"),
+    path("about/", TemplateView.as_view(template_name="about.html"), name="about"),
+    path("", index, name="content-home"),
+    path("detail/<str:slug>/", detail, name="content-detail"),
+    path("content/likes/<str:slug>/", content_likes, name="content-like"),
 ]
