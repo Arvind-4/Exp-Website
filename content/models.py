@@ -8,11 +8,12 @@ User = get_user_model()
 
 # Create your models here.
 
+
 class IpAddress(models.Model):
     ip = models.CharField(max_length=255)
+
     def __str__(self):
         return self.ip
-
 
 
 class SubjectList(models.Model):
@@ -24,7 +25,7 @@ class SubjectList(models.Model):
         return super(SubjectList, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.subject}'
+        return f"{self.subject}"
 
 
 class Category(models.Model):
@@ -36,7 +37,8 @@ class Category(models.Model):
         return super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.category}'
+        return f"{self.category}"
+
 
 class Content(models.Model):
     title = models.CharField(max_length=100)
@@ -46,8 +48,7 @@ class Content(models.Model):
     subject = models.ForeignKey(SubjectList, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)
     likes = models.ManyToManyField(User, blank=True)
-    views = models.ManyToManyField(IpAddress,blank=True)
-
+    views = models.ManyToManyField(IpAddress, blank=True)
 
     def __str__(self):
         return self.title

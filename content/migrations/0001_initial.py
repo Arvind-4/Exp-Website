@@ -16,40 +16,81 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('category', models.CharField(max_length=200)),
-                ('slug', models.SlugField(blank=True, editable=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("category", models.CharField(max_length=200)),
+                ("slug", models.SlugField(blank=True, editable=False)),
             ],
         ),
         migrations.CreateModel(
-            name='IpAddress',
+            name="IpAddress",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('ip', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("ip", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='SubjectList',
+            name="SubjectList",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('subject', models.CharField(max_length=225)),
-                ('slug', models.SlugField(blank=True, editable=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("subject", models.CharField(max_length=225)),
+                ("slug", models.SlugField(blank=True, editable=False)),
             ],
         ),
         migrations.CreateModel(
-            name='Content',
+            name="Content",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('slug', models.SlugField(blank=True, editable=False)),
-                ('content', ckeditor.fields.RichTextField(blank=True, null=True)),
-                ('date', models.DateTimeField(auto_now_add=True)),
-                ('category', models.ManyToManyField(to='content.Category')),
-                ('likes', models.ManyToManyField(blank=True, to=settings.AUTH_USER_MODEL)),
-                ('subject', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='content.subjectlist')),
-                ('views', models.ManyToManyField(blank=True, to='content.IpAddress')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("slug", models.SlugField(blank=True, editable=False)),
+                ("content", ckeditor.fields.RichTextField(blank=True, null=True)),
+                ("date", models.DateTimeField(auto_now_add=True)),
+                ("category", models.ManyToManyField(to="content.Category")),
+                (
+                    "likes",
+                    models.ManyToManyField(blank=True, to=settings.AUTH_USER_MODEL),
+                ),
+                (
+                    "subject",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="content.subjectlist",
+                    ),
+                ),
+                ("views", models.ManyToManyField(blank=True, to="content.IpAddress")),
             ],
         ),
     ]
