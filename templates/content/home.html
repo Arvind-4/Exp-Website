@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mt-5 mx-auto w-1/2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+    {% for object in object_list %}
+    <a href="{% url 'content-detail' object.slug %}" class="block py-2 px-4 w-full border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+        {{object.title}} | <span class="text-end text-sm gray-300">
+            {{ object.view_count }} View{{ object.view_count|pluralize }}
+        </span> 
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

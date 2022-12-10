@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
+    <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+        <article class="min-h-screen mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+            <div class="mb-4 lg:mb-6 not-format">
+                <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+                    {{object.title}}
+                </h1>
+            </div>
+            {% include "content/instructor/index.html" %}
+            <p class="lead">
+                {{object.content|safe}}
+            </p>
+        </article>
+    </div>
+{% if user.is_authenticated %}
+<div class="flex flex-col items-center">
+<form action="{% url 'content-like' object.slug %}" method="POST">
+  {% csrf_token %}
+  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    {% if content_is_liked %}
+    Unlike{% else %}Like {% endif %}</button>
+</form>
+{% else %}
+<div class="flex flex-col items-center">
+    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Sign In</button>
+</div>
+{% endif %}
+<strong class="flex flex-col items-center">
+    {{ object.like_count }} Like{{ object.like_count|pluralize }}
+</strong>   
+</div>
+  </main>
+{% endblock %}
